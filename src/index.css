@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* One-off animation for medal icon on load */
+@keyframes medalSpinOnce {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.medal-animate {
+  animation: medalSpinOnce 0.8s ease-in-out 1;
+}
