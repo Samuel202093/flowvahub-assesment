@@ -15,10 +15,10 @@ import {
 } from 'react-icons/fi'
 import { FiCheckCircle } from "react-icons/fi";
 import { FaAward, FaXTwitter } from "react-icons/fa6";
-import { FaFacebookF, FaLinkedinIn, FaWhatsapp, FaStar, FaMedal } from 'react-icons/fa'
+import { FaFacebookF, FaLinkedinIn, FaWhatsapp, FaStar } from 'react-icons/fa'
 import { useAuth } from '../../context/AuthContext'
 import { RiMedalFill } from "react-icons/ri";
-import { fetchPointsStatus, claimToday } from '../../lib/points'
+import { fetchPointsStatus } from '../../lib/points'
 import type { PointsStatus } from '../../types'
 
 const TabButton: React.FC<{ label: string; active?: boolean; onClick: () => void }> = ({ label, active, onClick }) => (
@@ -86,7 +86,7 @@ const RewardHub: React.FC = () => {
     try {
       // Optimistic UI update: reflect +5 immediately
       setStatus(prev => prev ? { ...prev, points: (prev.points ?? 0) + 5, hasClaimedToday: true } : prev)
-      const s = await claimToday(user.id, 5)
+     
       // Ensure UI reflects server state after claim
       const latest = await fetchPointsStatus(user.id)
       setStatus(latest)
