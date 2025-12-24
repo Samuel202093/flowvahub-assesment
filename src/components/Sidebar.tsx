@@ -7,7 +7,7 @@ const Sidebar: React.FC<SidebarProps> = ({ links, activeKey, onSelect, user }) =
   const { signOut, loading } = useAuth()
   return (
     <nav
-      className="w-full md:w-1/4y md:w-[20%] border-b md:border-b-0 md:border-r border-slate-200 bg-white p-4 flex flex-col md:sticky md:top-0 md:h-screen overflow-y-auto"
+      className="w-full lg:min-w-[260px] border-b lg:border-b-0 lg:border-r border-slate-200 bg-white p-4 flex flex-col lg:sticky lg:top-0 lg:h-screen overflow-y-auto"
       aria-label="Primary"
     >
       <div className="flex items-center gap-2 mb-3">

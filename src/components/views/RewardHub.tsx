@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  FiBell,
+  FiMenu,
   FiCalendar,
   FiZap,
   FiUserPlus,
@@ -14,7 +14,7 @@ import {
   FiDollarSign,
 } from 'react-icons/fi'
 import { FiCheckCircle } from "react-icons/fi";
-import { FaAward, FaXTwitter } from "react-icons/fa6";
+import { FaAward, FaXTwitter, FaBell } from "react-icons/fa6";
 import { FaFacebookF, FaLinkedinIn, FaWhatsapp, FaStar } from 'react-icons/fa'
 import { useAuth } from '../../context/AuthContext'
 import { RiMedalFill } from "react-icons/ri";
@@ -42,7 +42,7 @@ const DayChip: React.FC<{ label: string; active?: boolean; highlight?: boolean; 
   </div>
 )
 
-const RewardHub: React.FC = () => {
+const RewardHub: React.FC<{ onOpenNav?: () => void }> = ({ onOpenNav }) => {
   const [tab, setTab] = useState<'earn' | 'redeem'>('earn')
   const [copied, setCopied] = useState(false)
   const makeReferralLink = (fullName?: string, userId?: string) => {
@@ -121,20 +121,30 @@ const RewardHub: React.FC = () => {
     <div className="space-y-6">
       {/* Sticky Header */}
       <div className="sticky top-0 z-30 bg-white/90y bg-[#f9fafb] backdrop-blur border-b border-slate-200">
-        <div className="flex items-center justify-between px-6 py-4">
-          <div>
-            <h1 className="text-2xl font-semibold text-slate-900">Rewards Hub</h1>
-            <p className="text-sm text-slate-600">Earn points, unlock rewards, and celebrate your progress!</p>
+        <div className="flex items-center justify-between px-3 sm:px-6 py-4">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Open navigation"
+              onClick={() => onOpenNav?.()}
+              className="lg:hidden h-9 w-9 flex items-center justify-center rounded-full border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            >
+              <FiMenu className="h-5 w-5" />
+            </button>
+            <div>
+              <h1 className="text-2xl font-semibold text-slate-900">Rewards Hub</h1>
+              <p className="text-sm text-slate-600">Earn points, unlock rewards, and celebrate your progress!</p>
+            </div>
           </div>
           <button
             type="button"
             aria-label="Notifications"
             className="h-9 w-9 flex items-center justify-center rounded-full border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors"
           >
-            <FiBell className="h-5 w-5" />
+            <FaBell className="h-5 w-5" />
           </button>
         </div>
-        <div className="px-6">
+        <div className="px-3 sm:px-6">
           <div className="flex gap-2 cursor-pointer">
             <TabButton  label="Earn Points" active={tab === 'earn'} onClick={() => setTab('earn')}/>
             <TabButton  label="Redeem Rewards" active={tab === 'redeem'} onClick={() => setTab('redeem')} />
@@ -145,7 +155,7 @@ const RewardHub: React.FC = () => {
       {/* Content */}
       {tab === 'earn' && (
         <>
-      <div className="px-6 max-w-7xl mx-auto">
+      <div className="w-full px-3 sm:px-6 max-w-full md:max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="flex items-center gap-3 mb-4">
           <div className="h-6 w-1 rounded bg-violet-600" />
@@ -324,7 +334,7 @@ const RewardHub: React.FC = () => {
         )}
       </div>
       {/* Earn More Points */}
-      <div className="px-6 max-w-5xl mx-auto mt-8">
+      <div className="w-full px-3 sm:px-6 max-w-full md:max-w-5xl mx-auto mt-8">
         <div className="flex items-center gap-3 mb-4">
           <div className="h-6 w-1 rounded bg-violet-600" />
           <h2 className="text-xl font-semibold text-slate-900">Earn More Points</h2>
@@ -368,7 +378,7 @@ const RewardHub: React.FC = () => {
       </div>
 
       {/* Refer & Earn */}
-      <div className="px-6 max-w-7xl mx-auto mt-8">
+      <div className="w-full px-3 sm:px-6 max-w-full md:max-w-7xl mx-auto mt-8">
         <div className="flex items-center gap-3 mb-4">
           <div className="h-6 w-1 rounded bg-violet-600" />
           <h2 className="text-xl font-semibold text-slate-900">Refer & Earn</h2>
@@ -432,7 +442,7 @@ const RewardHub: React.FC = () => {
       )}
 
       {tab === 'redeem' && (
-        <div className="px-6 max-w-7xl mx-auto">
+        <div className="w-full px-3 sm:px-6 max-w-full md:max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <div className="h-6 w-1 rounded bg-violet-600" />
             <h2 className="text-xl font-semibold text-slate-900">Redeem Your Points</h2>
